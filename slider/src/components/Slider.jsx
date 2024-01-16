@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import leftChevron from "../assets/left-arrow.svg";
 import rightChevron from "../assets/right-arrow.svg";
 import "./Slider.css";
@@ -8,16 +8,31 @@ export default function Slider() {
   const [sliderIndex, setSliderIndex] = useState(1);
 
   function toogleImage(indexPayload) {
-    let newState;
-    if (indexPayload + sliderIndex > sliderData.length) {
-      newState = 1;
-    } else if (indexPayload + sliderIndex < 1) {
-      newState = sliderData.length;
-    } else {
-      newState = sliderIndex + indexPayload;
-    }
-    setSliderIndex(newState);
+    // let newState;
+    // if (indexPayload + sliderIndex > sliderData.length) {
+    //   newState = 1;
+    // } else if (indexPayload + sliderIndex < 1) {
+    //   newState = sliderData.length;
+    // } else {
+    //   newState = sliderIndex + indexPayload;
+    // }
+    // setSliderIndex(newState);
+    setSliderIndex((state) => {
+      if (indexPayload + state > sliderData.length) {
+        return 1;
+      } else if (indexPayload + state < 1) {
+        return sliderData.length;
+      } else {
+        return state + indexPayload;
+      }
+    });
   }
+
+  useEffect(() => {
+    const intervalID = setInterval(() => toogleImage(1), 2000);
+    return () => clearInterval(intervalID);
+  }, []);
+
   return (
     <>
       <p className="index-info">
