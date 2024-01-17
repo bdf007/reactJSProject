@@ -1,5 +1,6 @@
 import React from "react";
 import loader from "../assets/loader.svg";
+import "./MeteoLoaderCss.css";
 
 function meteoLoader() {
   return (
@@ -9,9 +10,9 @@ function meteoLoader() {
       </div>
       <p className="city-name">Paris</p>
       <p className="conutry-name">France</p>
-      <p className="temprature">17°C</p>
+      <p className="temperature">17°C</p>
       <div className="info-icon-container">
-        <img src="/icons/01d.svg" alt="weather icon" />
+        <img className="info-icon" src="/icons/01d.svg" alt="weather icon" />
       </div>
     </>
   );
